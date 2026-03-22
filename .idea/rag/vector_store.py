@@ -17,7 +17,7 @@ from utils.logger_handler import logger
 
 
 class VectorStore:
-    def __init__(self):
+    def __init__(self, auto_load: bool = True):
         self.persist_directory = get_abs_path(chroma_conf["persist_directory"])
         self.md5_file = get_abs_path(chroma_conf["md5_hex_store"])
         
@@ -31,6 +31,25 @@ class VectorStore:
             chunk_overlap=chroma_conf["chunk_overlap"],
             length_function=len
         )
+        
+        # 自动加载文档（用于部署环境）
+        if auto_load:
+            self._ensure_documents_loaded()
+    
+    def _ensure_documents_loaded(self):
+        """确保文档已加载到向量库"""
+        try:
+            # 检查向量库是否为空
+            count = self.vector_store._collection.count()
+            if count == 0:
+                logger.info("向量库为空，开始加载文档...")
+                self.load_documents()
+            else:
+                logger.info(f"向量库已有 {count} 条记录，跳过加载")
+        except Exception as e:
+            logger.error(f"检查向量库状态时出错: {e}")
+            # 出错时尝试加载
+            self.load_documents()
 
     def get_retriever(self):
         return self.vector_store.as_retriever(search_kwargs={"k": chroma_conf["k"]})
