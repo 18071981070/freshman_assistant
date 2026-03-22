@@ -64,8 +64,9 @@ class VectorStore:
         return loader.load()
 
     def load_documents(self):
+        data_path = get_abs_path(chroma_conf["data_path"])
         files = listdir_with_allowed_type(
-            chroma_conf["data_path"],
+            data_path,
             tuple(chroma_conf["allow_knowledge_file_type"])
         )
         

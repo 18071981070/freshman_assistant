@@ -26,8 +26,7 @@ ENV/
 env/
 .venv/
 
-# IDE
-.idea/
+# IDE (keep .idea as it contains source code)
 .vscode/
 *.iml
 *.ipr
