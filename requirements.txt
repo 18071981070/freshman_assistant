@@ -1,0 +1,13 @@
+streamlit
+langchain
+langchain-community
+langchain-core
+langchain-chroma
+langchain-text-splitters
+chromadb
+dashscope
+pypdf
+Pillow
+opencv-python-headless
+numpy<2
+pyyaml
