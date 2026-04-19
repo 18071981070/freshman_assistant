@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 streamlit>=1.30.0
 langchain>=0.1.0
 langchain-chroma>=0.1.0
@@ -12,3 +13,18 @@ chromadb>=1.0.0
 pyyaml>=6.0.0
 requests>=2.31.0
 tqdm>=4.66.0
+=======
+streamlit
+langchain
+langchain-community
+langchain-core
+langchain-chroma
+langchain-text-splitters
+chromadb
+dashscope
+pypdf
+Pillow
+opencv-python-headless
+numpy<2
+pyyaml
+>>>>>>> 60952ec67107fb30fedf61073e0a6aa6470c650d
